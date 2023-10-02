@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "TrueVote.Bot": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7205",
+      "launchBrowser": false
+    }
+  }
+}

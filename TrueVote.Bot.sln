@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34112.27
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{19BF4C78-C5E0-4A71-96B1-603248935054}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CONTRIBUTING.md = CONTRIBUTING.md
+		TrueVote.Bot\.config\dotnet-tools.json = TrueVote.Bot\.config\dotnet-tools.json
+		LICENSE = LICENSE
+		README.md = README.md
+		.github\workflows\truevote-bot-github.yml = .github\workflows\truevote-bot-github.yml
+		.github\workflows\truevote-bot-version.yml = .github\workflows\truevote-bot-version.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrueVote.Bot", "TrueVote.Bot\TrueVote.Bot.csproj", "{0DE21353-E154-4206-9B25-507E26D05DBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0DE21353-E154-4206-9B25-507E26D05DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0DE21353-E154-4206-9B25-507E26D05DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0DE21353-E154-4206-9B25-507E26D05DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0DE21353-E154-4206-9B25-507E26D05DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {22B4AE13-4BC4-4705-B70A-64D5C236DBB4}
+	EndGlobalSection
+EndGlobal
