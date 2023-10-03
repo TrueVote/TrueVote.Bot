@@ -94,8 +94,6 @@ namespace TrueVote.Bot.Bots
                 return;
             }
 
-            LogInformation("Before .TestApiAsync()");
-
             var testKey = await botClient.TestApiAsync();
             if (!testKey)
             {
