@@ -21,7 +21,7 @@ The main technology stack platform is [.NET Core](https://dotnet.microsoft.com/)
 
 Create a new file at the root of the TrueVote.Bot project named `local.settings.json`. To use the functions of the Telegram Bot locally, create a new Bot using ['BotFather'](https://core.telegram.org/bots#3-how-do-i-create-a-bot) and place the key in the `local.settings.json` file.
 
-Get the `ServiceBusConnectionString` from Azure portal. Currently ServiceBus is not available to run locally.
+Get the `ServiceBusConnectionString` from Azure portal. Currently Service Bus is not available to run locally.
 
 ```json
 {
