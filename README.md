@@ -9,11 +9,11 @@
 
 TrueVote.Bot is an implementation of interacting with the TrueVote Voting Suite of Applications via bots. It's deployed as an Azure Functions project.
 
-The main technology stack platform is [.NET Core](https://dotnet.microsoft.com/) 7.0.
+The main technology stack platform is [.NET Core](https://dotnet.microsoft.com/) 8.0.
 
 ## 🛠 Prerequisites
 
-* Install Visual Studio 2022 (preview) or later, or Visual Studio Code. Ensure that `$ dotnet --version` is at least 7.0.
+* Install Visual Studio 2022 (preview) or later, or Visual Studio Code. Ensure that `$ dotnet --version` is at least 8.0.
 
 ## ⌨️ Install, Build, and Run the Bot
 
