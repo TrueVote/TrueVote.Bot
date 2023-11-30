@@ -22,7 +22,7 @@ namespace TrueVote.Api
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
     public partial class Client 
     {
-        private string _baseUrl = "https://localhost:8080/api";
+        private string _baseUrl = "https://api.truevote.org/api";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
 
@@ -2757,7 +2757,7 @@ namespace TrueVote.Api
         /// HeaderImageUrl
         /// </summary>
         [Newtonsoft.Json.JsonProperty("HeaderImageUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [System.ComponentModel.DataAnnotations.StringLength(32768)]
+        [System.ComponentModel.DataAnnotations.StringLength(1024)]
         public string HeaderImageUrl { get; set; }
 
         /// <summary>
@@ -2932,6 +2932,13 @@ namespace TrueVote.Api
         [System.ComponentModel.DataAnnotations.StringLength(2048)]
         [System.ComponentModel.DataAnnotations.RegularExpression(@"^[A-Za-z0-9]")]
         public string PartyAffiliation { get; set; }
+
+        /// <summary>
+        /// CandidateImageUrl
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("CandidateImageUrl", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.StringLength(1024)]
+        public string CandidateImageUrl { get; set; }
 
         /// <summary>
         /// DateCreated
@@ -3350,6 +3357,14 @@ namespace TrueVote.Api
         [Newtonsoft.Json.JsonProperty("RaceTypeName", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         [System.ComponentModel.DataAnnotations.StringLength(2048)]
         public string RaceTypeName { get; set; }
+
+        /// <summary>
+        /// Race Type Metadata
+        /// </summary>
+        [Newtonsoft.Json.JsonProperty("RaceTypeMetadata", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        [System.ComponentModel.DataAnnotations.StringLength(2048)]
+        [System.ComponentModel.DataAnnotations.RegularExpression(@"^[A-Za-z0-9]")]
+        public string RaceTypeMetadata { get; set; }
 
         /// <summary>
         /// DateCreated
