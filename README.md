@@ -3,6 +3,8 @@
 [![Twitter](https://img.shields.io/twitter/follow/TrueVoteOrg?style=social)](https://twitter.com/TrueVoteOrg)
 [![Keybase Chat](https://img.shields.io/badge/chat-on%20keybase-7793d8)](https://keybase.io/team/truevote)
 
+[![TrueVote.Bot](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/truevote-bot-github.yml/badge.svg)](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/truevote-bot-github.yml)
+
 # TrueVote.Bot
 
 ## 🌈 Overview
