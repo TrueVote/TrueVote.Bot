@@ -1,3 +1,10 @@
+#pragma warning disable CS8601 // Possible null reference assignment.
+#pragma warning disable CS8603 // Possible null reference return.
+#pragma warning disable CS8604 // Possible null reference argument.
+#pragma warning disable CS8602 // Dereference of a possibly null reference.
+#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
+#pragma warning disable IDE0058 // Expression value is never used
+
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
 using Telegram.Bot.Types;
@@ -11,11 +18,6 @@ using Telegram.Bot.Polling;
 // See local.settings.json for local settings and Azure Portal for production settings
 namespace TrueVote.Bot.Bots
 {
-#pragma warning disable CS8601 // Possible null reference assignment.
-#pragma warning disable CS8603 // Possible null reference return.
-#pragma warning disable CS8604 // Possible null reference argument.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-#pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
     [ExcludeFromCodeCoverage] // TODO Write tests. This requires mocking the Telegram API
     public class TelegramBot
     {
@@ -326,9 +328,10 @@ namespace TrueVote.Bot.Bots
             }
         }
     }
+}
 #pragma warning restore CS8601 // Possible null reference assignment.
 #pragma warning restore CS8603 // Possible null reference return.
 #pragma warning restore CS8604 // Possible null reference argument.
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
-}
+#pragma warning restore IDE0058 // Expression value is never used
