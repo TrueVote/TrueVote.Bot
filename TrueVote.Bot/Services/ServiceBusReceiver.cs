@@ -1,3 +1,5 @@
+#pragma warning disable IDE0058 // Expression value is never used
+
 using Azure.Messaging.ServiceBus;
 using TrueVote.Bot.Bots;
 
@@ -62,3 +64,4 @@ namespace TrueVote.Bot.Services
         }
     }
 }
+#pragma warning restore IDE0058 // Expression value is never used

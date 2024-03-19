@@ -56,7 +56,7 @@ To refresh the models, use `nswag`.
 
 Nswag is installed in this project as a `dotnet tool`.
 
-Local: `$ dotnet nswag swagger2csclient /client-language:csharp /input:http://localhost:8080/api/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
+Local: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://localhost:7253/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
 
 Production: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://api.truevote.org/api/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
 
