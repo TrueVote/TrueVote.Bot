@@ -31,7 +31,7 @@ Get the `ServiceBusConnectionString` from Azure portal. Currently Service Bus is
   "Values": {
     "AzureWebJobsStorage": "UseDevelopmentStorage=true",
     "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
-    "BaseApiUrl": "https://localhost:7071/api",
+    "BaseApiUrl": "https://localhost:7253/api",
     "TelegramBotKey": "<TelegramBotKey>",
     "TelegramRuntimeChannel": "TrueVote_Api_Runtime_Channel_Dev",
     "ServiceBusConnectionString": "<ServiceBusConnectionString>",
@@ -58,7 +58,7 @@ Nswag is installed in this project as a `dotnet tool`.
 
 Local: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://localhost:7253/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
 
-Production: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://api.truevote.org/api/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
+Production: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://api.truevote.org/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
 
 ## 🎁 Versioning
 
