@@ -24,7 +24,7 @@ namespace TrueVote.Bot.Bots
         private static HttpClientHandler? httpClientHandler;
         private static TelegramBotClient? botClient = null; // To connect to bot: https://t.me/TrueVoteAPI_bot
         private static string TelegramRuntimeChannel = string.Empty;
-        private static string BaseApiUrl = string.Empty; // TODO Would be better to pull this from the environment instead of a setting. e.g. For local it would be https://localhost:7071/api
+        private static string BaseApiUrl = string.Empty;
         private static readonly string HelpText = "📖 TrueVote API Bot enables you execute some commands on the API. Simply use / in this chat to see a list of commands. To view broadcast messages, be sure and join the TrueVote API Runtime Channel: https://t.me/{0}";
 
         public TelegramBot()
@@ -252,14 +252,14 @@ namespace TrueVote.Bot.Bots
             {
                 var client = new HttpClient(httpClientHandler);
 
-                var findElectionObj = new FindElectionModel { Name = "" };
+                var findElectionObj = new FindElectionModel { Name = "All" };
                 var json = JsonConvert.SerializeObject(findElectionObj);
-                var httpRequestMessage = new HttpRequestMessage { RequestUri = new Uri($"{BaseApiUrl}/election/find"), Method = HttpMethod.Get, Content = new StringContent(json.ToString()) };
+                var httpRequestMessage = new HttpRequestMessage { RequestUri = new Uri($"{BaseApiUrl}/election/find"), Method = HttpMethod.Get, Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json") };
                 var ret = await client.SendAsync(httpRequestMessage);
 
-                var retList = await ret.Content.ReadAsAsync<List<ElectionModel>>();
+                var retList = await ret.Content.ReadAsAsync<ElectionModelList>();
 
-                return retList.Count.ToString();
+                return retList.Elections.Count.ToString();
             }
             catch (Exception e)
             {
@@ -275,7 +275,7 @@ namespace TrueVote.Bot.Bots
 
                 var countBallotsObj = new CountBallotModel { DateCreatedStart = new DateTime(2023, 01, 01), DateCreatedEnd = new DateTime(2033, 12, 31) };
                 var json = JsonConvert.SerializeObject(countBallotsObj);
-                var httpRequestMessage = new HttpRequestMessage { RequestUri = new Uri($"{BaseApiUrl}/ballot/count"), Method = HttpMethod.Get, Content = new StringContent(json.ToString()) };
+                var httpRequestMessage = new HttpRequestMessage { RequestUri = new Uri($"{BaseApiUrl}/ballot/count"), Method = HttpMethod.Get, Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json") };
                 var ret = await client.SendAsync(httpRequestMessage);
 
                 var retCount = await ret.Content.ReadAsAsync<CountBallotModelResponse>();
