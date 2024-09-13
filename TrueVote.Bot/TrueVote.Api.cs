@@ -4380,6 +4380,11 @@ namespace TrueVote.Api
         [System.ComponentModel.DataAnnotations.Required]
         public ElectionModel Election { get; set; } = new ElectionModel();
 
+        [Newtonsoft.Json.JsonProperty("AccessCode", Required = Newtonsoft.Json.Required.Always)]
+        [System.ComponentModel.DataAnnotations.Required]
+        [System.ComponentModel.DataAnnotations.StringLength(16, MinimumLength = 1)]
+        public string AccessCode { get; set; }
+
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.20.0.0 (NJsonSchema v10.9.0.0 (Newtonsoft.Json v13.0.0.0))")]
