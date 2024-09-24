@@ -13,6 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 using Newtonsoft.Json;
 using TrueVote.Api;
 using Telegram.Bot.Polling;
+using Newtonsoft.Json.Linq;
 
 // TODO Localize this service, since it returns English messages to Telegram
 // See local.settings.json for local settings and Azure Portal for production settings
@@ -246,16 +247,34 @@ namespace TrueVote.Bot.Bots
             }
         }
 
+        private static string BuildQueryString(object obj)
+        {
+            var json = JsonConvert.SerializeObject(obj);
+            var jsonObject = JObject.Parse(json);
+            return string.Join("&", jsonObject.Properties()
+                .Select(p => $"{Uri.EscapeDataString(p.Name)}={Uri.EscapeDataString(p.Value.ToString())}"));
+        }
+
+        private static async Task<HttpResponseMessage> SendGetRequestAsync<T>(string endpoint, T requestObject)
+        {
+            var client = new HttpClient(httpClientHandler);
+
+            var queryString = BuildQueryString(requestObject);
+            var fullUrl = $"{BaseApiUrl}/{endpoint}?{queryString}";
+            var httpRequestMessage = new HttpRequestMessage
+            {
+                RequestUri = new Uri(fullUrl),
+                Method = HttpMethod.Get
+            };
+            return await client.SendAsync(httpRequestMessage);
+        }
+
         private static async Task<string> GetElectionsCountAsync()
         {
             try
             {
-                var client = new HttpClient(httpClientHandler);
-
                 var findElectionObj = new FindElectionModel { Name = "All" };
-                var json = JsonConvert.SerializeObject(findElectionObj);
-                var httpRequestMessage = new HttpRequestMessage { RequestUri = new Uri($"{BaseApiUrl}/election/find"), Method = HttpMethod.Get, Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json") };
-                var ret = await client.SendAsync(httpRequestMessage);
+                var ret = await SendGetRequestAsync("election/find", findElectionObj);
 
                 var retList = await ret.Content.ReadAsAsync<ElectionModelList>();
 
@@ -271,12 +290,8 @@ namespace TrueVote.Bot.Bots
         {
             try
             {
-                var client = new HttpClient(httpClientHandler);
-
                 var countBallotsObj = new CountBallotModel { DateCreatedStart = new DateTime(2023, 01, 01), DateCreatedEnd = new DateTime(2033, 12, 31) };
-                var json = JsonConvert.SerializeObject(countBallotsObj);
-                var httpRequestMessage = new HttpRequestMessage { RequestUri = new Uri($"{BaseApiUrl}/ballot/count"), Method = HttpMethod.Get, Content = new StringContent(json, System.Text.Encoding.UTF8, "application/json") };
-                var ret = await client.SendAsync(httpRequestMessage);
+                var ret = await SendGetRequestAsync("ballot/count", countBallotsObj);
 
                 var retCount = await ret.Content.ReadAsAsync<CountBallotModelResponse>();
 
