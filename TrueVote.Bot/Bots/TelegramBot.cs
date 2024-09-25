@@ -14,6 +14,8 @@ using Newtonsoft.Json;
 using TrueVote.Api;
 using Telegram.Bot.Polling;
 using Newtonsoft.Json.Linq;
+using System.Net;
+using System.Net.Http.Headers;
 
 // TODO Localize this service, since it returns English messages to Telegram
 // See local.settings.json for local settings and Azure Portal for production settings
@@ -266,6 +268,7 @@ namespace TrueVote.Bot.Bots
                 RequestUri = new Uri(fullUrl),
                 Method = HttpMethod.Get
             };
+
             return await client.SendAsync(httpRequestMessage);
         }
 
@@ -275,6 +278,10 @@ namespace TrueVote.Bot.Bots
             {
                 var findElectionObj = new FindElectionModel { Name = "All" };
                 var ret = await SendGetRequestAsync("election/find", findElectionObj);
+                if (ret.StatusCode == HttpStatusCode.NotFound)
+                {
+                    return "0";
+                }
 
                 var retList = await ret.Content.ReadAsAsync<ElectionModelList>();
 
