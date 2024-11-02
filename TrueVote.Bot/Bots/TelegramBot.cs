@@ -123,7 +123,7 @@ namespace TrueVote.Bot.Bots
 
                 LogInformation($"Start listening for @{me.Username}");
 
-                await SendChannelMessageAsync($"TrueVote API Bot Started: @{me.Username}");
+                await SendChannelMessageAsync($"TrueVote API Bot Started: @{me.Username}", true);
 
                 // This keeps it running
                 new ManualResetEvent(false).WaitOne();
@@ -223,11 +223,11 @@ namespace TrueVote.Bot.Bots
             return Task.CompletedTask;
         }
 
-        private static async Task<Message> SendMessageAsync(ChatId chatId, string text, CancellationToken cancellationToken)
+        private static async Task<Message> SendMessageAsync(ChatId chatId, string text, CancellationToken cancellationToken, bool disableNotification = false)
         {
             try
             {
-                return await botClient.SendTextMessageAsync(chatId, text, null, null, null, null, null, null, null, null, null, cancellationToken);
+                return await botClient.SendTextMessageAsync(chatId, text, null, null, null, null, disableNotification, null, null, null, null, cancellationToken);
             }
             catch (Exception e)
             {
@@ -236,11 +236,11 @@ namespace TrueVote.Bot.Bots
             }
         }
 
-        public async virtual Task<Message> SendChannelMessageAsync(string text)
+        public async virtual Task<Message> SendChannelMessageAsync(string text, bool disableNotification = false)
         {
             try
             {
-                return await botClient.SendTextMessageAsync($"@{TelegramRuntimeChannel}", text);
+                return await botClient.SendTextMessageAsync($"@{TelegramRuntimeChannel}", text, null, null, null, null, disableNotification, null, null, null, null, default);
             }
             catch (Exception e)
             {
