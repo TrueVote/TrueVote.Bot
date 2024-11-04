@@ -4,6 +4,7 @@
 #pragma warning disable CS8602 // Dereference of a possibly null reference.
 #pragma warning disable CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 #pragma warning disable IDE0058 // Expression value is never used
+#pragma warning disable CS0618 // Type or member is obsolete
 
 using Telegram.Bot;
 using Telegram.Bot.Exceptions;
@@ -15,7 +16,6 @@ using TrueVote.Api;
 using Telegram.Bot.Polling;
 using Newtonsoft.Json.Linq;
 using System.Net;
-using System.Net.Http.Headers;
 
 // TODO Localize this service, since it returns English messages to Telegram
 // See local.settings.json for local settings and Azure Portal for production settings
@@ -99,7 +99,7 @@ namespace TrueVote.Bot.Bots
                 return;
             }
 
-            var testKey = await botClient.TestApiAsync();
+            var testKey = await botClient.TestApi();
             if (!testKey)
             {
                 LogInformation($"Error with Telegram Api Key - Failure to connect");
@@ -115,11 +115,11 @@ namespace TrueVote.Bot.Bots
             try
             {
                 // Inject the bot with these command options
-                var commandStatus = botClient.SetMyCommandsAsync(commands, null, null, cts.Token);
+                var commandStatus = botClient.SetMyCommands(commands, null, null, cts.Token);
 
                 botClient.StartReceiving(HandleUpdateAsync, HandleErrorAsync, receiverOptions, cancellationToken: cts.Token);
 
-                var me = await botClient.GetMeAsync();
+                var me = await botClient.GetMe();
 
                 LogInformation($"Start listening for @{me.Username}");
 
@@ -227,7 +227,7 @@ namespace TrueVote.Bot.Bots
         {
             try
             {
-                return await botClient.SendTextMessageAsync(chatId, text, null, null, null, null, disableNotification, null, null, null, null, cancellationToken);
+                return await botClient.SendTextMessageAsync(chatId, text, null, ParseMode.None, null, null, disableNotification, false, false, null, null, null, null, cancellationToken);
             }
             catch (Exception e)
             {
@@ -240,7 +240,7 @@ namespace TrueVote.Bot.Bots
         {
             try
             {
-                return await botClient.SendTextMessageAsync($"@{TelegramRuntimeChannel}", text, null, null, null, null, disableNotification, null, null, null, null, default);
+                return await botClient.SendTextMessageAsync($"@{TelegramRuntimeChannel}", text, null, ParseMode.None, null, null, disableNotification, false, false, null, null, null, null, default);
             }
             catch (Exception e)
             {
@@ -357,3 +357,4 @@ namespace TrueVote.Bot.Bots
 #pragma warning restore CS8602 // Dereference of a possibly null reference.
 #pragma warning restore CS4014 // Because this call is not awaited, execution of the current method continues before the call is completed
 #pragma warning restore IDE0058 // Expression value is never used
+#pragma warning restore CS0618 // Type or member is obsolete
