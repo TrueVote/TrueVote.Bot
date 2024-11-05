@@ -16,6 +16,7 @@ using TrueVote.Api;
 using Telegram.Bot.Polling;
 using Newtonsoft.Json.Linq;
 using System.Net;
+using System.Text.Json;
 
 // TODO Localize this service, since it returns English messages to Telegram
 // See local.settings.json for local settings and Azure Portal for production settings
@@ -56,6 +57,7 @@ namespace TrueVote.Bot.Bots
                 new() { Command = "help", Description = "📖 View summary of what the bot can do" },
                 new() { Command = "ballots", Description = "🖥 View the count of total number of ballots" },
                 new() { Command = "elections", Description = "🖥 View the count of total number of elections" },
+                new() { Command = "health", Description = "🧑‍⚕️ Check the API health" },
                 new() { Command = "status", Description = "🖥 View the API status" },
                 new() { Command = "version", Description = "🤖 View the API version" }
             };
@@ -177,6 +179,13 @@ namespace TrueVote.Bot.Bots
                     {
                         var ret = await GetBallotsCountAsync();
                         messageResponse = $"Total Ballots: {ret}";
+                        break;
+                    }
+
+                case "/health":
+                    {
+                        var ret = await GetHealthAsync();
+                        messageResponse = $"{ret}";
                         break;
                     }
 
@@ -310,6 +319,26 @@ namespace TrueVote.Bot.Bots
             }
         }
 
+        private static async Task<string> GetHealthAsync()
+        {
+            try
+            {
+                var client = new HttpClient(httpClientHandler);
+
+                var ret = await client.GetAsync($"{BaseApiUrl}/health");
+
+                var result = await ret.Content.ReadAsStringAsync();
+
+                var sresult = result.FormatJson();
+
+                return sresult;
+            }
+            catch (Exception e)
+            {
+                return $"Error: {e.Message}";
+            }
+        }
+
         private static async Task<string> GetStatusAsync()
         {
             try
@@ -348,6 +377,21 @@ namespace TrueVote.Bot.Bots
             {
                 return $"Error: {e.Message}";
             }
+        }
+    }
+
+    public static class Extensions
+    {
+        public static string FormatJson(this string json)
+        {
+            var options = new JsonSerializerOptions()
+            {
+                WriteIndented = true
+            };
+
+            var jsonElement = System.Text.Json.JsonSerializer.Deserialize<JsonElement>(json);
+
+            return System.Text.Json.JsonSerializer.Serialize(jsonElement, options);
         }
     }
 }
