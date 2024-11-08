@@ -125,7 +125,8 @@ namespace TrueVote.Bot.Bots
 
                 LogInformation($"Start listening for @{me.Username}");
 
-                await SendChannelMessageAsync($"TrueVote API Bot Started: @{me.Username}", true);
+                // Disabling notification doesn't seem to work. Too many of these messages.
+                //await SendChannelMessageAsync($"TrueVote API Bot Started: @{me.Username}", true);
 
                 // This keeps it running
                 new ManualResetEvent(false).WaitOne();
