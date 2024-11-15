@@ -4,6 +4,7 @@
 [![Keybase Chat](https://img.shields.io/badge/chat-on%20keybase-7793d8)](https://keybase.io/team/truevote)
 
 [![TrueVote.Bot](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/truevote-bot-github.yml/badge.svg)](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/truevote-bot-github.yml)
+[![CodeQL](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/github-code-scanning/codeql)
 
 # TrueVote.Bot
 
