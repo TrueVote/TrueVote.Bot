@@ -6,17 +6,17 @@
 [![TrueVote.Bot](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/truevote-bot-github.yml/badge.svg)](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/truevote-bot-github.yml)
 [![CodeQL](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/github-code-scanning/codeql/badge.svg)](https://github.com/TrueVote/TrueVote.Bot/actions/workflows/github-code-scanning/codeql)
 
-# TrueVote.Bot
+# TrueVote.Bot - DEPRECATED. All functionality moved to [TrueVote.Comms](https://github.com/TrueVote/TrueVote.Comms)
 
 ## 🌈 Overview
 
 TrueVote.Bot is an implementation of interacting with the TrueVote Voting Suite of Applications via bots. It's deployed as an Azure Functions project.
 
-The main technology stack platform is [.NET Core](https://dotnet.microsoft.com/) 8.0.
+The main technology stack platform is [.NET Core](https://dotnet.microsoft.com/) 9.0.
 
 ## 🛠 Prerequisites
 
-* Install Visual Studio 2022 (preview) or later, or Visual Studio Code. Ensure that `$ dotnet --version` is at least 8.0.
+* Install Visual Studio 2022 (preview) or later, or Visual Studio Code. Ensure that `$ dotnet --version` is at least 9.0.
 
 ## ⌨️ Install, Build, and Run the Bot
 
@@ -57,9 +57,9 @@ To refresh the models, use `nswag`.
 
 Nswag is installed in this project as a `dotnet tool`.
 
-Local: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://localhost:7253/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
+Local: `$ dotnet nswag openapi2csclient /input:https://localhost:7253/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
 
-Production: `$ dotnet nswag swagger2csclient /client-language:csharp /input:https://api.truevote.org/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
+Production: `$ dotnet nswag openapi2csclient /input:https://api.truevote.org/swagger/v1/swagger.json /output:TrueVote.Api.cs /namespace:TrueVote.Api`
 
 ## 🎁 Versioning
 
